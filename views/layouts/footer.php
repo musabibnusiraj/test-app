@@ -1,3 +1,4 @@
+</div>
 <!-- / Layout page -->
 </div>
 

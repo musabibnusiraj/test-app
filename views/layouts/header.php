@@ -9,7 +9,7 @@ include __DIR__ . '/../../config.php';
     class="light-style layout-menu-fixed"
     dir="ltr"
     data-theme="theme-default"
-    data-assets-path=""
+    data-assets-path="assets/"
     data-template="vertical-menu-template-free">
 
 <head>
