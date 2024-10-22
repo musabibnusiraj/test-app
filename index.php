@@ -7,7 +7,7 @@ $sm = AppManager::getSM();
 $username = $sm->getAttribute("username");
 
 if (isset($username)) {
-    header('location: dashboard.php');
+    header('location: views/admin/dashboard.php');
 } else {
-    header('location: login.php');
+    header('location: views/auth/login.php');
 }
