@@ -139,7 +139,7 @@ $permission = $sm->getAttribute("permission");
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <span class="fw-semibold d-block"><?= $username ?></span>
-                                                    <small class="text-muted"><?= $permission ?></small>
+                                                    <small class="text-muted text-capitalize"><?= $permission ?></small>
                                                 </div>
                                             </div>
                                         </a>
