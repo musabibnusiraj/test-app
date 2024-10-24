@@ -37,7 +37,7 @@ $data = $userModel->getAll();
                             <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?= $user['username'] ?? '' ?></strong></td>
                             <td><?= $user['email'] ?? '' ?></td>
                             <td>
-                                <?= $user['permission'] ?? '' ?>
+                                <span class="text-capitalize"> <?= $user['permission'] ?? '' ?></span>
                             </td>
                             <td>
                                 <?php if ($user['is_active'] == 1) { ?>
