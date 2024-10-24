@@ -3,9 +3,15 @@ include __DIR__ . '/../../config.php';
 include BASE_PATH . '/helpers/AppManager.php';
 
 $sm = AppManager::getSM();
+
 $userId = $sm->getAttribute("userId");
 $username = $sm->getAttribute("username");
 $permission = $sm->getAttribute("permission");
+
+// Extract the last filename from the URL
+$currentUrl = $_SERVER['SCRIPT_NAME'];
+$currentFilename = basename($currentUrl);  // e.g., "dashboard.php"
+
 ?>
 
 <!DOCTYPE html>
@@ -84,7 +90,7 @@ $permission = $sm->getAttribute("permission");
 
                 <ul class="menu-inner py-1">
 
-                    <li class="menu-item <?= $currentFilename === "dashboard.php" ? 'active' : '' ?>">
+                    <li class="menu-item <?= $currentFilename === "dashboard.php" ? 'active' : '' ?> ">
                         <a href="<?= url('views/admin/dashboard.php') ?>" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="appointments">Dashboard</div>
@@ -92,10 +98,17 @@ $permission = $sm->getAttribute("permission");
                     </li>
 
                     <!-- Dashboard -->
-                    <li class="menu-item ">
+                    <li class="menu-item <?= $currentFilename === "appointments.php" ? 'active' : '' ?> ">
                         <a href="<?= url('views/admin/appointments.php') ?>" class="menu-link">
                             <i class="menu-icon tf-icons  bx bx-collection"></i>
                             <div data-i18n="Analytics">Appointments</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item <?= $currentFilename === "users.php" ? 'active' : '' ?> ">
+                        <a href="<?= url('views/admin/users.php') ?>" class="menu-link">
+                            <i class="menu-icon tf-icons  bx bx-user"></i>
+                            <div data-i18n="Analytics">Users</div>
                         </a>
                     </li>
 
