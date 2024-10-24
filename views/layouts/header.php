@@ -1,6 +1,6 @@
 <?php
 include __DIR__ . '/../../config.php';
-include __DIR__ . './../../helpers/AppManager.php';
+include BASE_PATH . '/helpers/AppManager.php';
 
 $sm = AppManager::getSM();
 $username = $sm->getAttribute("username");
