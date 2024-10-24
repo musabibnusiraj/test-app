@@ -3,6 +3,7 @@ include __DIR__ . '/../../config.php';
 include BASE_PATH . '/helpers/AppManager.php';
 
 $sm = AppManager::getSM();
+$userId = $sm->getAttribute("userId");
 $username = $sm->getAttribute("username");
 $permission = $sm->getAttribute("permission");
 ?>
