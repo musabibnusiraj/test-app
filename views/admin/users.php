@@ -176,4 +176,4 @@ $data = $userModel->getAll();
 <?php
 require_once('../layouts/footer.php');
 ?>
-<script src="<?= asset('assets/js/forms/users.js') ?>"></script>
+<script src="<?= asset('assets/forms-js/users.js') ?>"></script>
