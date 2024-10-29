@@ -1,6 +1,6 @@
 <?php
 require_once('../layouts/header.php');
-include BASE_PATH . '/models/user_model.php';
+include BASE_PATH . '/models/User.php';
 
 $userModel = new User();
 $table = $userModel->getTableName();
@@ -86,7 +86,7 @@ $data = $userModel->getAll();
 <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form id="create-form">
+            <form id="create-form" action="<?= url('services/ajax_functions.php') ?>">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalCenterTitle">Add New User</h5>
                     <button
@@ -96,12 +96,13 @@ $data = $userModel->getAll();
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-
+                    <input type="hidden" name="action" value="create_user">
                     <div class="row">
                         <div class="col mb-3">
                             <label for="nameWithTitle" class="form-label">User Name</label>
                             <input
                                 type="text"
+                                required
                                 id="nameWithTitle"
                                 name="user_name"
                                 class="form-control"
@@ -112,6 +113,7 @@ $data = $userModel->getAll();
                         <div class="col mb-3">
                             <label for="emailWithTitle" class="form-label">Email</label>
                             <input
+                                required
                                 type="text"
                                 name="email"
                                 id="emailWithTitle"
@@ -119,16 +121,7 @@ $data = $userModel->getAll();
                                 placeholder="xxxx@xxx.xx" />
                         </div>
                     </div>
-                    <div class="row ">
-                        <div class="mb-3">
-                            <label for="exampleFormControlSelect1" class="form-label">Role</label>
-                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" name="permission">
-                                <option selected>Open this select menu</option>
-                                <option value="operator">Operator</option>
-                                <option value="doctor">Doctor</option>
-                            </select>
-                        </div>
-                    </div>
+
 
                     <div class="row gy-2">
                         <div class="col orm-password-toggle">
@@ -136,6 +129,7 @@ $data = $userModel->getAll();
                             <div class="input-group">
                                 <input
                                     type="password"
+                                    required
                                     name="password"
                                     class="form-control"
                                     id="basic-default-password12"
@@ -149,6 +143,7 @@ $data = $userModel->getAll();
                             <div class="input-group">
                                 <input
                                     type="password"
+                                    required
                                     name="confirm_password"
                                     class="form-control"
                                     id="basic-default-password12"
@@ -156,6 +151,15 @@ $data = $userModel->getAll();
                                     aria-describedby="basic-default-password2" />
                                 <span id="basic-default-password2" class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="mb-3">
+                            <label for="exampleFormControlSelect1" class="form-label">Role</label>
+                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" name="permission" required>
+                                <option value="operator">Operator</option>
+                                <option value="doctor">Doctor</option>
+                            </select>
                         </div>
                     </div>
                     <div class="mb-3 mt-3">
