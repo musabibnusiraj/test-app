@@ -13,7 +13,17 @@ $data = $userModel->getAll();
 <!-- Content -->
 
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Dashboard /</span> Users</h4>
+
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Dashboard /</span> Users
+        <!-- Button trigger modal -->
+        <button
+            type="button"
+            class="btn btn-primary float-end"
+            data-bs-toggle="modal"
+            data-bs-target="#modalCenter">
+            Add New User
+        </button>
+    </h4>
 
     <!-- Basic Bootstrap Table -->
     <div class="card">
@@ -69,10 +79,101 @@ $data = $userModel->getAll();
 
 
 </div>
-<!--/ Responsive Table -->
-</div>
+
 <!-- / Content -->
+
+<!-- Modal -->
+<div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form id="create-form">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCenterTitle">Add New User</h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="nameWithTitle" class="form-label">User Name</label>
+                            <input
+                                type="text"
+                                id="nameWithTitle"
+                                name="user_name"
+                                class="form-control"
+                                placeholder="Enter Name" />
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col mb-3">
+                            <label for="emailWithTitle" class="form-label">Email</label>
+                            <input
+                                type="text"
+                                name="email"
+                                id="emailWithTitle"
+                                class="form-control"
+                                placeholder="xxxx@xxx.xx" />
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="mb-3">
+                            <label for="exampleFormControlSelect1" class="form-label">Role</label>
+                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" name="permission">
+                                <option selected>Open this select menu</option>
+                                <option value="operator">Operator</option>
+                                <option value="doctor">Doctor</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row gy-2">
+                        <div class="col orm-password-toggle">
+                            <label class="form-label" for="basic-default-password12">Password</label>
+                            <div class="input-group">
+                                <input
+                                    type="password"
+                                    name="password"
+                                    class="form-control"
+                                    id="basic-default-password12"
+                                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                    aria-describedby="basic-default-password2" />
+                                <span id="basic-default-password2" class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                            </div>
+                        </div>
+                        <div class="col form-password-toggle">
+                            <label class="form-label" for="basic-default-password12">Confirm Password</label>
+                            <div class="input-group">
+                                <input
+                                    type="password"
+                                    name="confirm_password"
+                                    class="form-control"
+                                    id="basic-default-password12"
+                                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                    aria-describedby="basic-default-password2" />
+                                <span id="basic-default-password2" class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <div id="alert-container"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary" id="create">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <?php
 require_once('../layouts/footer.php');
 ?>
+<script src="<?= asset('assets/js/forms/users.js') ?>"></script>
