@@ -1,12 +1,24 @@
 
 $(document).ready(function () {
+    function validatePasswords() {
+        if ($('#passwordInput').val() === $('#confirmPasswordInput').val()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     $('#create').on('click', function () {
         var form = $('#create-form')[0] ?? null;
         if (!form) console.log('Something went wrong..');
 
+        if (!validatePasswords()) {
+            showAlert('Passwords do not match..!', 'danger'); // Prevent form submission if passwords do not match
+            return;
+        }
+
         var url = $('#create-form').attr('action');
-        form.reportValidity()
-        if (form.checkValidity()) {
+        if (form.checkValidity() && form.reportValidity()) {
             var formData = new FormData(form);
             // Perform AJAX request
             $.ajax({
@@ -45,48 +57,6 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $('#create-new').on('click', function () {
-        // Get the form element
-        var form = $('#create-user-form')[0];
-        form.reportValidity();
-
-        // Check form validity
-        if (form.checkValidity()) {
-            // Create a FormData object
-            var formData = new FormData($('#create-user-form')[0]);
-
-            // Perform AJAX request
-            $.ajax({
-                url: $('#create-user-form').attr('action'),
-                type: 'POST',
-                data: formData,
-                contentType: false, // Don't set content type
-                processData: false, // Don't process the data
-                dataType: 'json',
-                success: function (response) {
-                    showAlert(response.message, response.success ? 'primary' : 'danger');
-                    if (response.success) {
-                        $('#createUserModal').modal('hide');
-                        setTimeout(function () {
-                            location.reload();
-                        }, 1000);
-                    }
-                },
-                error: function (error) {
-                    // Handle the error
-                    console.error('Error submitting the form:', error);
-                },
-                complete: function (response) {
-                    // This will be executed regardless of success or error
-                    console.log('Request complete:', response);
-                }
-            });
-        } else {
-            var message = ('Form is not valid. Please check your inputs.');
-            showAlert(message, 'danger');
-        }
-    });
-
 
     $('.edit-user').on('click', async function () {
         var user_id = $(this).data('id');

@@ -125,28 +125,28 @@ $data = $userModel->getAll();
 
                     <div class="row gy-2">
                         <div class="col orm-password-toggle">
-                            <label class="form-label" for="basic-default-password12">Password</label>
+                            <label class="form-label" for="basic-default-password1">Password</label>
                             <div class="input-group">
                                 <input
                                     type="password"
                                     required
                                     name="password"
                                     class="form-control"
-                                    id="basic-default-password12"
+                                    id="passwordInput"
                                     placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                    aria-describedby="basic-default-password2" />
-                                <span id="basic-default-password2" class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                    aria-describedby="basic-default-password1" />
+                                <span id="basic-default-password1" class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                             </div>
                         </div>
                         <div class="col form-password-toggle">
-                            <label class="form-label" for="basic-default-password12">Confirm Password</label>
+                            <label class="form-label" for="basic-default-password1s2">Confirm Password</label>
                             <div class="input-group">
                                 <input
                                     type="password"
                                     required
                                     name="confirm_password"
                                     class="form-control"
-                                    id="basic-default-password12"
+                                    id="confirmPasswordInput"
                                     placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                     aria-describedby="basic-default-password2" />
                                 <span id="basic-default-password2" class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
