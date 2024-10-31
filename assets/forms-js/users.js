@@ -57,7 +57,7 @@ $(document).ready(function () {
 
     $('.edit-user-btn').on('click', async function () {
         var user_id = $(this).data('id');
-        alert(user_id);
+        await getUserById(user_id);
     })
 
     $('.delete-user-btn').on('click', async function () {
@@ -65,6 +65,50 @@ $(document).ready(function () {
         alert(user_id);
     })
 });
+
+async function getUserById(id) {
+    var url = $('#update-form').attr('action');
+
+    // Perform AJAX request
+    $.ajax({
+        url: url,
+        type: 'GET',
+        data: {
+            user_id: id,
+            action: 'get_user'
+        }, // Form data
+        dataType: 'json',
+        success: function (response) {
+            console.log(response);
+
+            showAlert(response.message, response.success ? 'primary' : 'danger');
+            if (response.success) {
+                var user_id = response.data.id;
+                var username = response.data.username;
+                var email = response.data.email;
+                var permission = response.data.permission;
+                var is_active = response.data.is_active;
+
+                $('#edit-user-modal #user_id').val(user_id);
+                $('#edit-user-modal #user-name').val(username);
+                $('#edit-user-modal #email').val(email);
+                $('#edit-user-modal #permission option[value="' + permission + '"]').prop('selected', true);
+                $('#edit-user-modal #is_active option[value="' + is_active + '"]').prop('selected', true);
+
+                $('#edit-user-modal').modal('show');
+            }
+        },
+        error: function (error) {
+            // Handle the error
+            console.error('Error submitting the form:', error);
+        },
+        complete: function (response) {
+            // This will be executed regardless of success or error
+            console.log('Request complete:', response);
+        }
+    });
+}
+
 
 
 
@@ -180,45 +224,6 @@ $(document).ready(function () {
     });
 });
 
-async function getUserById(id) {
-    var formAction = $('#update-user-form').attr('action');
-
-    // Perform AJAX request
-    $.ajax({
-        url: formAction,
-        type: 'GET',
-        data: {
-            user_id: id,
-            action: 'get_user'
-        }, // Form data
-        dataType: 'json',
-        success: function (response) {
-            showAlert(response.message, response.success ? 'primary' : 'danger');
-            if (response.success) {
-                var user_id = response.data.id;
-                var username = response.data.username;
-                var email = response.data.email;
-                var permission = response.data.permission;
-                var is_active = response.data.is_active;
-
-                $('#editUserModal #user_id').val(user_id);
-                $('#editUserModal #username').val(username);
-                $('#editUserModal #email').val(email);
-                $('#editUserModal #permission option[value="' + permission + '"]').prop('selected', true);
-                $('#editUserModal #is_active option[value="' + is_active + '"]').prop('selected', true);
-                $('#editUserModal').modal('show');
-            }
-        },
-        error: function (error) {
-            // Handle the error
-            console.error('Error submitting the form:', error);
-        },
-        complete: function (response) {
-            // This will be executed regardless of success or error
-            console.log('Request complete:', response);
-        }
-    });
-}
 
 async function deleteById(id) {
     var formAction = $('#update-user-form').attr('action');

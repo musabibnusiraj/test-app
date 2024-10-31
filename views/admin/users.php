@@ -178,10 +178,10 @@ $data = $userModel->getAll();
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="edit-modal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="edit-user-modal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form id="create-form" action="<?= url('services/ajax_functions.php') ?>">
+            <form id="update-form" action="<?= url('services/ajax_functions.php') ?>">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalCenterTitle">Update User</h5>
                     <button
@@ -191,7 +191,8 @@ $data = $userModel->getAll();
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="action" value="create_user">
+                    <input type="hidden" name="action" value="get_user">
+                    <input type="hidden" id="user_id" name="user_id" value="">
                     <div class="row">
                         <div class="col mb-3">
                             <label for="nameWithTitle" class="form-label">User Name</label>
@@ -251,7 +252,7 @@ $data = $userModel->getAll();
                     <div class="row ">
                         <div class="mb-3">
                             <label for="exampleFormControlSelect1" class="form-label">Role</label>
-                            <select class="form-select" id="role" aria-label="Default select example" name="permission" required>
+                            <select class="form-select" id="permission" aria-label="Default select example" name="permission" required>
                                 <option value="operator">Operator</option>
                                 <option value="doctor">Doctor</option>
                             </select>
