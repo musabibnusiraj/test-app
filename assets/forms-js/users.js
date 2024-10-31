@@ -115,11 +115,6 @@ async function getUserById(id) {
 
 $(document).ready(function () {
 
-    $('.edit-user').on('click', async function () {
-        var user_id = $(this).data('id');
-        await getUserById(user_id);
-    })
-
     $('.delete-user').on('click', async function () {
         var user_id = $(this).data('id');
         var is_confirm = confirm('Are you sure,Do you want to delete?');

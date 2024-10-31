@@ -258,6 +258,15 @@ $data = $userModel->getAll();
                             </select>
                         </div>
                     </div>
+                    <div class="row ">
+                        <div class="mb-3">
+                            <label for="exampleFormControlSelect1" class="form-label">Status</label>
+                            <select class="form-select" id="is_active" aria-label="Default select example" id="is_active" name="is_active" required>
+                                <option value="1">Active</option>
+                                <option value="0">Inactive</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="mb-3 mt-3">
                         <div id="alert-container"></div>
                     </div>
