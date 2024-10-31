@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
-    function validatePasswords() {
-        if ($('#passwordInput').val() === $('#confirmPasswordInput').val()) {
+    function validatePasswords(class1, class2) {
+        if ($('#' + class1).val() === $('#' + class2).val()) {
             return true;
         } else {
             return false;
@@ -12,7 +12,7 @@ $(document).ready(function () {
         var form = $('#create-form')[0] ?? null;
         if (!form) console.log('Something went wrong..');
 
-        if (!validatePasswords()) {
+        if (!validatePasswords('passwordInput', 'confirmPasswordInput')) {
             showAlert('Passwords do not match..!', 'danger'); // Prevent form submission if passwords do not match
             return;
         }
@@ -67,7 +67,10 @@ $(document).ready(function () {
     })
 
     $('#update-user').on('click', function () {
-        alert('hi');
+        if (!validatePasswords('password', 'confirm-password')) {
+            showAlert('Passwords do not match..!', 'danger', 'edit-alert-container'); // Prevent form submission if passwords do not match
+            return;
+        }
         // Get the form element
         var form = $('#update-form')[0];
         form.reportValidity();
@@ -87,7 +90,7 @@ $(document).ready(function () {
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    showAlert(response.message, response.success ? 'primary' : 'danger', 'alert-container-update-form');
+                    showAlert(response.message, response.success ? 'primary' : 'danger', 'edit-alert-container');
                     if (response.success) {
                         $('#edit-user-modal').modal('hide');
                         setTimeout(function () {

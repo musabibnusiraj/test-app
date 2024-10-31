@@ -272,7 +272,7 @@ $data = $userModel->getAll();
                         </div>
                     </div>
                     <div class="mb-3 mt-3">
-                        <div id="alert-container"></div>
+                        <div id="edit-alert-container"></div>
                     </div>
                 </div>
                 <div class="modal-footer">

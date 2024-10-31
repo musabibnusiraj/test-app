@@ -119,17 +119,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['user_id']) && isset($_GE
 
 //update user
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update_user') {
+
     try {
+
         $username = $_POST['user_name'] ?? '';
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? "";
+        $cpassword = $_POST['confirm_password'] ?? "";
         $permission = $_POST['permission'] ?? 'doctor';
         $is_active = $_POST['is_active'] == 1 ? 1 : 0;
         $id = $_POST['id'];
 
         // Validate inputs
-        if (empty($username) || empty($email) || empty($password)) {
+        if (empty($username) || empty($email) || empty($password) || empty($cpassword)) {
             echo json_encode(['success' => false, 'message' => 'Required fields are missing!']);
+            exit;
+        }
+
+        // Validate inputs
+        if (($password) != $cpassword) {
+            echo json_encode(['success' => false, 'message' => 'Passwords do not match..!']);
             exit;
         }
 
