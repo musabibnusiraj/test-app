@@ -65,6 +65,51 @@ $(document).ready(function () {
         var is_confirm = confirm('Are you sure,Do you want to delete?');
         if (is_confirm) await deleteById(user_id);
     })
+
+    $('#update-user').on('click', function () {
+        alert('hi');
+        // Get the form element
+        var form = $('#update-form')[0];
+        form.reportValidity();
+
+        // Check form validity
+        if (form.checkValidity()) {
+            // Serialize the form data
+            var url = $('#update-form').attr('action');
+            var formData = new FormData($('#update-form')[0]);
+
+            // Perform AJAX request
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData, // Form data
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    showAlert(response.message, response.success ? 'primary' : 'danger', 'alert-container-update-form');
+                    if (response.success) {
+                        $('#edit-user-modal').modal('hide');
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1000);
+                    }
+                },
+                error: function (error) {
+                    // Handle the error
+                    console.error('Error submitting the form:', error);
+                },
+                complete: function (response) {
+                    // This will be executed regardless of success or error
+                    console.log('Request complete:', response);
+                }
+            });
+        } else {
+            var message = ('Form is not valid. Please check your inputs.');
+            showAlert(message, 'danger');
+        }
+    });
+
 });
 
 async function getUserById(id) {
@@ -152,49 +197,6 @@ $(document).ready(function () {
         if (is_confirm) await deleteById(user_id);
     })
 
-    $('#update-now').on('click', function () {
-
-        // Get the form element
-        var form = $('#update-user-form')[0];
-        $('#update-user-form')[0].reportValidity();
-
-        // Check form validity
-        if (form.checkValidity()) {
-            // Serialize the form data
-            var formAction = $('#update-user-form').attr('action');
-            var formData = new FormData($('#update-user-form')[0]);
-
-            // Perform AJAX request
-            $.ajax({
-                url: formAction,
-                type: 'POST',
-                data: formData, // Form data
-                dataType: 'json',
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    showAlert(response.message, response.success ? 'primary' : 'danger', 'alert-container-update-form');
-                    if (response.success) {
-                        $('#editUserModal').modal('hide');
-                        setTimeout(function () {
-                            location.reload();
-                        }, 1000);
-                    }
-                },
-                error: function (error) {
-                    // Handle the error
-                    console.error('Error submitting the form:', error);
-                },
-                complete: function (response) {
-                    // This will be executed regardless of success or error
-                    console.log('Request complete:', response);
-                }
-            });
-        } else {
-            var message = ('Form is not valid. Please check your inputs.');
-            showAlert(message, 'danger');
-        }
-    });
 
     $('#permission').change(function () {
         var permission = $(this).val();

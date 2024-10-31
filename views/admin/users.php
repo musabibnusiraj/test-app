@@ -181,7 +181,7 @@ $data = $userModel->getAll();
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Udpate Modal -->
 <div class="modal fade" id="edit-user-modal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -195,8 +195,8 @@ $data = $userModel->getAll();
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="action" value="get_user">
-                    <input type="hidden" id="user_id" name="user_id" value="">
+                    <input type="hidden" name="action" value="update_user">
+                    <input type="hidden" id="user_id" name="id" value="">
                     <div class="row">
                         <div class="col mb-3">
                             <label for="nameWithTitle" class="form-label">User Name</label>
@@ -279,7 +279,7 @@ $data = $userModel->getAll();
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                         Close
                     </button>
-                    <button type="button" class="btn btn-primary" id="create">Create</button>
+                    <button type="button" class="btn btn-primary" id="update-user">Update</button>
                 </div>
             </form>
         </div>

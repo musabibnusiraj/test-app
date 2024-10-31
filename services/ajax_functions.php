@@ -117,41 +117,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['user_id']) && isset($_GE
     exit;
 }
 
-// //update user
-// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update_user') {
-//     try {
-//         $username = $_POST['username'];
-//         $email = $_POST['email'];
-//         $password = $_POST['password'];
-//         $permission = $_POST['permission'];
-//         $is_active = $_POST['is_active'] == 1 ? 1 : 0;
-//         $id = $_POST['id'];
+//update user
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update_user') {
+    try {
+        $username = $_POST['user_name'] ?? '';
+        $email = $_POST['email'] ?? '';
+        $password = $_POST['password'] ?? "";
+        $permission = $_POST['permission'] ?? 'doctor';
+        $is_active = $_POST['is_active'] == 1 ? 1 : 0;
+        $id = $_POST['id'];
 
-//         // Validate inputs
-//         if (empty($username) || empty($email)) {
-//             echo json_encode(['success' => false, 'message' => 'Required fields are missing!']);
-//             exit;
-//         }
+        // Validate inputs
+        if (empty($username) || empty($email) || empty($password)) {
+            echo json_encode(['success' => false, 'message' => 'Required fields are missing!']);
+            exit;
+        }
 
-//         // Validate email format
-//         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-//             echo json_encode(['success' => false, 'message' => 'Invalid email address']);
-//             exit;
-//         }
+        // Validate email format
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo json_encode(['success' => false, 'message' => 'Invalid email address']);
+            exit;
+        }
 
-//         $userModel = new User();
-//         $updated =  $userModel->updateUser($id, $username, $password, $permission, $email, $is_active);
-//         if ($updated) {
-//             echo json_encode(['success' => true, 'message' => "User updated successfully!"]);
-//         } else {
-//             echo json_encode(['success' => false, 'message' => 'Failed to update user. May be user already exist!']);
-//         }
-//     } catch (PDOException $e) {
-//         // Handle database connection errors
-//         echo json_encode(['success' => false, 'message' => 'Error: ' . $e->getMessage()]);
-//     }
-//     exit;
-// }
+        $userModel = new User();
+        $updated =  $userModel->updateUser($id, $username, $password, $permission, $email, $is_active);
+        if ($updated) {
+            echo json_encode(['success' => true, 'message' => "User updated successfully!"]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Failed to update user. May be user already exist!']);
+        }
+    } catch (PDOException $e) {
+        // Handle database connection errors
+        echo json_encode(['success' => false, 'message' => 'Error: ' . $e->getMessage()]);
+    }
+    exit;
+}
 
 // //book_appointment
 // if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'book_appointment') {
