@@ -43,4 +43,11 @@ abstract class BaseModel
         $param = array(':id' => $id);
         return $this->pm->run("SELECT * FROM " . $this->getTableName() . " WHERE id = :id", $param, true);
     }
+
+    // Method to delete a record by its ID from the associated table
+    public function deleteRec($id)
+    {
+        $param = array(':id' => $id);
+        return $this->pm->run("DELETE FROM " . $this->getTableName() . " WHERE id = :id", $param);
+    }
 }

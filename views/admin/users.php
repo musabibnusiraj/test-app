@@ -57,15 +57,19 @@ $data = $userModel->getAll();
                                 <?php } ?>
                             </td>
                             <td>
-                                <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item edit-user-btn" data-id="<?= $user['id']; ?>"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                        <a class="dropdown-item delete-user-btn" data-id="<?= $user['id']; ?>"><i class="bx bx-trash me-1"></i> Delete</a>
+                                <?php if ($user['id'] != $userId) { ?>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+
+                                            <a class="dropdown-item edit-user-btn" data-id="<?= $user['id']; ?>"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                            <a class="dropdown-item delete-user-btn" data-id="<?= $user['id']; ?>"><i class="bx bx-trash me-1"></i> Delete</a>
+
+                                        </div>
                                     </div>
-                                </div>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php } ?>

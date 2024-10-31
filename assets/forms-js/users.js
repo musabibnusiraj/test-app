@@ -62,7 +62,8 @@ $(document).ready(function () {
 
     $('.delete-user-btn').on('click', async function () {
         var user_id = $(this).data('id');
-        alert(user_id);
+        var is_confirm = confirm('Are you sure,Do you want to delete?');
+        if (is_confirm) await deleteById(user_id);
     })
 });
 
@@ -109,6 +110,36 @@ async function getUserById(id) {
     });
 }
 
+
+async function deleteById(id) {
+    var url = $('#update-form').attr('action');
+
+    // Perform AJAX request
+    $.ajax({
+        url: url,
+        type: 'GET',
+        data: {
+            user_id: id,
+            action: 'delete_user'
+        }, // Form data
+        dataType: 'json',
+        success: function (response) {
+            if (response.success) {
+                setTimeout(function () {
+                    location.reload();
+                }, 1000);
+            }
+        },
+        error: function (error) {
+            // Handle the error
+            console.error('Error submitting the form:', error);
+        },
+        complete: function (response) {
+            // This will be executed regardless of success or error
+            console.log('Request complete:', response);
+        }
+    });
+}
 
 
 
@@ -219,33 +250,3 @@ $(document).ready(function () {
     });
 });
 
-
-async function deleteById(id) {
-    var formAction = $('#update-user-form').attr('action');
-
-    // Perform AJAX request
-    $.ajax({
-        url: formAction,
-        type: 'GET',
-        data: {
-            user_id: id,
-            action: 'delete_user'
-        }, // Form data
-        dataType: 'json',
-        success: function (response) {
-            if (response.success) {
-                setTimeout(function () {
-                    location.reload();
-                }, 1000);
-            }
-        },
-        error: function (error) {
-            // Handle the error
-            console.error('Error submitting the form:', error);
-        },
-        complete: function (response) {
-            // This will be executed regardless of success or error
-            console.log('Request complete:', response);
-        }
-    });
-}
