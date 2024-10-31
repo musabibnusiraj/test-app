@@ -36,4 +36,11 @@ abstract class BaseModel
     {
         return $this->pm->run("SELECT * FROM " . $this->getTableName());
     }
+
+    // Method to retrieve a record by its ID from the associated table
+    public function getById($id)
+    {
+        $param = array(':id' => $id);
+        return $this->pm->run("SELECT * FROM " . $this->getTableName() . " WHERE id = :id", $param, true);
+    }
 }

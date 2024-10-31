@@ -80,24 +80,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     exit;
 }
 
-// //Get user by id
-// if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['user_id']) && isset($_GET['action']) &&  $_GET['action'] == 'get_user') {
+//Get user by id
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['user_id']) && isset($_GET['action']) &&  $_GET['action'] == 'get_user') {
 
-//     try {
-//         $user_id = $_GET['user_id'];
-//         $userModel = new User();
-//         $user = $userModel->getById($user_id);
-//         if ($user) {
-//             echo json_encode(['success' => true, 'message' => "User created successfully!", 'data' => $user]);
-//         } else {
-//             echo json_encode(['success' => false, 'message' => 'Failed to create user. May be user already exist!']);
-//         }
-//     } catch (PDOException $e) {
-//         // Handle database connection errors
-//         echo json_encode(['success' => false, 'message' => 'Error: ' . $e->getMessage()]);
-//     }
-//     exit;
-// }
+    try {
+        $user_id = $_GET['user_id'];
+        $userModel = new User();
+        $user = $userModel->getById($user_id);
+        if ($user) {
+            echo json_encode(['success' => true, 'message' => "User created successfully!", 'data' => $user]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Failed to create user. May be user already exist!']);
+        }
+    } catch (PDOException $e) {
+        // Handle database connection errors
+        echo json_encode(['success' => false, 'message' => 'Error: ' . $e->getMessage()]);
+    }
+    exit;
+}
 
 // //Delete by user id
 // if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['user_id']) && isset($_GET['action']) &&  $_GET['action'] == 'delete_user') {

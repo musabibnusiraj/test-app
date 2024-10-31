@@ -54,7 +54,20 @@ $(document).ready(function () {
             showAlert('Form is not valid. Please check your inputs.', 'danger');
         }
     });
+
+    $('.edit-user-btn').on('click', async function () {
+        var user_id = $(this).data('id');
+        alert(user_id);
+    })
+
+    $('.delete-user-btn').on('click', async function () {
+        var user_id = $(this).data('id');
+        alert(user_id);
+    })
 });
+
+
+
 
 $(document).ready(function () {
 
