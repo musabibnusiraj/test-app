@@ -5,10 +5,8 @@ $(document).ready(function () {
         $('#permission, #edit_permission').trigger('change');
     }
 
-
     $('#permission').change(function () {
         var permission = $(this).val();
-        alert(permission);
         if (permission === 'doctor') {
             $('#additional-fields').html(
                 '<div class="row mt-2">' +

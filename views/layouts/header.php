@@ -119,6 +119,13 @@ $currentFilename = basename($currentUrl);  // e.g., "dashboard.php"
                             </a>
                         </li>
 
+                        <li class="menu-item <?= $currentFilename === "doctor_availabilities.php" ? 'active' : '' ?> ">
+                            <a href="<?= url('views/admin/doctor_availabilities.php') ?>" class="menu-link">
+                                <i class="menu-icon tf-icons  bx bx-dna"></i>
+                                <div data-i18n="Analytics">Doctor Availabilities</div>
+                            </a>
+                        </li>
+
                         <li class="menu-item <?= $currentFilename === "users.php" ? 'active' : '' ?> ">
                             <a href="<?= url('views/admin/users.php') ?>" class="menu-link">
                                 <i class="menu-icon tf-icons  bx bx-user"></i>
