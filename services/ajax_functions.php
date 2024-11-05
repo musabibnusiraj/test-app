@@ -2,11 +2,12 @@
 require_once '../config.php';
 require_once '../helpers/AppManager.php';
 require_once '../models/User.php';
+require_once '../models/Doctor.php';
 
 // require_once '../models/Appointment.php';
 // require_once '../models/Payment.php';
 // require_once '../models/Treatment.php';
-// require_once '../models/Doctor.php';
+
 
 // Define target directory
 $target_dir = "../assets/uploads/";
@@ -32,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             // Check if there are errors
             if ($image["error"] > 0) {
                 echo json_encode(['success' => false, 'message' => "Error uploading file: " . $image["error"]]);
+                exit;
             } else {
                 // Check if file is an image
                 if (getimagesize($image["tmp_name"]) !== false) {

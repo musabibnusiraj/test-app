@@ -90,7 +90,7 @@ $data = $userModel->getAll();
 <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form id="create-form" action="<?= url('services/ajax_functions.php') ?>">
+            <form id="create-form" action="<?= url('services/ajax_functions.php') ?>" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalCenterTitle">Add New User</h5>
                     <button
@@ -190,7 +190,7 @@ $data = $userModel->getAll();
 <div class="modal fade" id="edit-user-modal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form id="update-form" action="<?= url('services/ajax_functions.php') ?>">
+            <form id="update-form" action="<?= url('services/ajax_functions.php') ?>" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalCenterTitle">Update User</h5>
                     <button
