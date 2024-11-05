@@ -20,53 +20,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $password = $_POST['password'];
         $permission = $_POST['permission'];
 
-        // $doctor_name = $_POST['doctor_name'] ?? null;
-        // $about_doctor = $_POST['about_doctor'] ?? null;
+        $doctor_name = $_POST['doctor_name'] ?? null;
+        $about_doctor = $_POST['about_doctor'] ?? null;
 
-        // // Get file information
-        // $image = $_FILES["image"] ?? null;
-        // $imageFileName = null;
+        // Get file information
+        $image = $_FILES["image"] ?? null;
+        $imageFileName = null;
 
-        // // Check if file is uploaded
-        // if (isset($image) && !empty($image)) {
-        //     // Check if there are errors
-        //     if ($image["error"] > 0) {
-        //         echo "Error uploading file: " . $image["error"];
-        //     } else {
-        //         // Check if file is an image
-        //         if (getimagesize($image["tmp_name"]) !== false) {
-        //             // Check file size (optional)
-        //             if ($image["size"] < 500000) { // 500kb limit
-        //                 // Generate unique filename
-        //                 $new_filename = uniqid() . "." . pathinfo($image["name"])["extension"];
+        // Check if file is uploaded
+        if (isset($image) && !empty($image)) {
+            // Check if there are errors
+            if ($image["error"] > 0) {
+                echo json_encode(['success' => false, 'message' => "Error uploading file: " . $image["error"]]);
+            } else {
+                // Check if file is an image
+                if (getimagesize($image["tmp_name"]) !== false) {
+                    // Check file size (optional)
+                    if ($image["size"] < 500000) { // 500kb limit
+                        // Generate unique filename
+                        $new_filename = uniqid() . "." . pathinfo($image["name"])["extension"];
 
-        //                 // Move uploaded file to target directory
-        //                 if (move_uploaded_file($image["tmp_name"], $target_dir . $new_filename)) {
-        //                     $imageFileName = $new_filename;
-        //                 } else {
-        //                     echo json_encode(['success' => false, 'message' => "Error moving uploaded file."]);
-        //                     exit;
-        //                 }
-        //             } else {
-        //                 echo json_encode(['success' => false, 'message' => "File size is too large."]);
-        //                 exit;
-        //             }
-        //         } else {
-        //             echo json_encode(['success' => false, 'message' => "Uploaded file is not an image."]);
-        //             exit;
-        //         }
-        //     }
-        // }
+                        // Move uploaded file to target directory
+                        if (move_uploaded_file($image["tmp_name"], $target_dir . $new_filename)) {
+                            $imageFileName = $new_filename;
+                        } else {
+                            echo json_encode(['success' => false, 'message' => "Error moving uploaded file."]);
+                            exit;
+                        }
+                    } else {
+                        echo json_encode(['success' => false, 'message' => "File size is too large."]);
+                        exit;
+                    }
+                } else {
+                    echo json_encode(['success' => false, 'message' => "Uploaded file is not an image."]);
+                    exit;
+                }
+            }
+        }
 
         $userModel = new User();
         $created =  $userModel->createUser($username, $password, $permission, $email);
         if ($created) {
 
-            // if ($permission == 'doctor') {
-            //     $user_id = $userModel->getLastInsertedUserId();
-            //     $doctorModel = new Doctor();
-            //     $doctorCreated =  $doctorModel->createDoctor($doctor_name,  $about_doctor, $user_id, $imageFileName);
-            // }
+            if ($permission == 'doctor') {
+                $user_id = $userModel->getLastInsertedUserId();
+
+                $doctorModel = new Doctor();
+                $doctorCreated =  $doctorModel->createDoctor($doctor_name,  $about_doctor, $user_id, $imageFileName);
+            }
 
             echo json_encode(['success' => true, 'message' => "User created successfully!"]);
         } else {

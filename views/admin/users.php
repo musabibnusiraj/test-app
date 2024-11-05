@@ -160,7 +160,7 @@ $data = $userModel->getAll();
                     <div class="row ">
                         <div class="mb-3">
                             <label for="exampleFormControlSelect1" class="form-label">Role</label>
-                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" name="permission" required>
+                            <select class="form-select" id="permission" aria-label="Default select example" name="permission" required>
                                 <option value="operator">Operator</option>
                                 <option value="doctor">Doctor</option>
                             </select>
@@ -168,6 +168,11 @@ $data = $userModel->getAll();
                     </div>
                     <div class="mb-3 mt-3">
                         <div id="alert-container"></div>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <div id="additional-fields">
+
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -256,7 +261,7 @@ $data = $userModel->getAll();
                     <div class="row ">
                         <div class="mb-3">
                             <label for="exampleFormControlSelect1" class="form-label">Role</label>
-                            <select class="form-select" id="permission" aria-label="Default select example" name="permission" required>
+                            <select class="form-select" id="edit_permission" aria-label="Default select example" name="permission" required>
                                 <option value="operator">Operator</option>
                                 <option value="doctor">Doctor</option>
                             </select>
