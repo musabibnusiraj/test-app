@@ -6,8 +6,7 @@ $userModel = new User();
 $table = $userModel->getTableName();
 $data = $userModel->getAll();
 
-// dd($data);
-// print($table);
+if ($permission != 'operator') dd('Access Denied...!');
 ?>
 
 <!-- Content -->

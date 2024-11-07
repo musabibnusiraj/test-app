@@ -5,7 +5,8 @@ include BASE_PATH . '/models/Doctor.php';
 $doctorModel = new Doctor();
 $data = $doctorModel->getAll();
 
-// dd($data);
+if ($permission != 'operator') dd('Access Denied...!');
+
 ?>
 
 <!-- Content -->
