@@ -166,8 +166,11 @@ async function getUserById(id) {
                 var email = response.data.email;
                 var permission = response.data.permission;
                 var is_active = response.data.is_active;
-                // var doctorName = response.data.name;
-                // var doctorId = response.data.doctor_id;
+
+                var doctorName = response.data.name;
+                var doctorId = response.data.doctor_id;
+                var doctorPhoto = response.data.photo;
+                var doctorAbout = response.data.about;
 
                 $('#edit-user-modal #user_id').val(user_id);
                 $('#edit-user-modal #user-name').val(username);
@@ -177,14 +180,15 @@ async function getUserById(id) {
 
                 if (permission === 'doctor') {
                     $('#edit-additional-fields').html(
+                        ' <input type="hidden" id="doctor_id" name="doctor_id" value="' + doctorId + '"></input>' +
                         '<div class="row mt-2">' +
                         '<div class="col-12 mb-3">' +
                         '<label for="name" class="form-label">Doctor Name</label>' +
-                        '<input type="text" id="name" name="doctor_name" class="form-control" placeholder="Enter Name" required />' +
+                        '<input type="text" id="name" value="' + doctorName + '" name="doctor_name" class="form-control" placeholder="Enter Name" required />' +
                         '</div>' +
                         '<div class="col-12 mb-3">' +
                         '<label for="about" class="form-label">About Doctor</label>' +
-                        '<textarea id="about" name="about_doctor" class="form-control" placeholder="Enter About" required></textarea>' +
+                        '<textarea id="about" name="about_doctor" class="form-control" placeholder="Enter About" required>' + doctorAbout + '</textarea>' +
                         '</div>' +
                         '<div class="col-12 mb-3">' +
                         '<label for="formFile" class="form-label">Doctor Photo</label>' +
