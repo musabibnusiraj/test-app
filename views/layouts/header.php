@@ -33,6 +33,7 @@ $currentFilename = basename($currentUrl);  // e.g., "dashboard.php"
     <title>Tooth Care App ImTS</title>
 
     <meta name="description" content="" />
+    <meta name="domain" content="<?= current_domain() ?>" />
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="<?= asset('assets/img/favicon/favicon.ico') ?>" />
 

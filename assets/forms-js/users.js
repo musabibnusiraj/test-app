@@ -1,5 +1,7 @@
 
 $(document).ready(function () {
+
+
     // Trigger change event on page load if doctor permission is selected by default
     if ($('#permission, #edit_permission').val() === 'doctor') {
         $('#permission, #edit_permission').trigger('change');
@@ -179,6 +181,10 @@ async function getUserById(id) {
                 $('#edit-user-modal #is_active option[value="' + is_active + '"]').prop('selected', true);
 
                 if (permission === 'doctor') {
+
+                    const domain = $('meta[name="domain"]').attr('content'); // Fetch domain from <meta> tag
+                    const doctorPhotoPath = domain + '/assets/uploads/';
+
                     $('#edit-additional-fields').html(
                         ' <input type="hidden" id="doctor_id" name="doctor_id" value="' + doctorId + '"></input>' +
                         '<div class="row mt-2">' +
@@ -194,6 +200,17 @@ async function getUserById(id) {
                         '<label for="formFile" class="form-label">Doctor Photo</label>' +
                         '<input class="form-control" name="image" id="image" type="file" accept="image/*">' +
                         '</div>' +
+                        '<div class="col-12 mb-3">' +
+                        '<label for="formFile" class="form-label">Doctor Photo</label>' +
+                        // Display current photo if available, or default image
+                        (doctorPhoto ?
+                            '<img src="' + doctorPhotoPath + doctorPhoto + '" alt="user-avatar" class="d-block rounded m-3" width="80" id="uploadedAvatar">' :
+                            '<img src="assets/img/avatars/1.png" alt="user-avatar" class="d-block rounded m-3" width="80" id="uploadedAvatar">'
+                        ) +
+                        // File input for updating photo
+                        '<input class="form-control mt-2" name="image" id="image" type="file" accept="image/*">' +
+                        '</div>' +
+
                         '</div>'
                     );
                 } else {
