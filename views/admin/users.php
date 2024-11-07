@@ -165,13 +165,14 @@ if ($permission != 'operator') dd('Access Denied...!');
                             </select>
                         </div>
                     </div>
-                    <div class="mb-3 mt-3">
-                        <div id="alert-container"></div>
-                    </div>
+
                     <div class="mb-3 mt-3">
                         <div id="additional-fields">
-
                         </div>
+                    </div>
+
+                    <div class="mb-3 mt-3">
+                        <div id="alert-container"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -273,6 +274,10 @@ if ($permission != 'operator') dd('Access Denied...!');
                                 <option value="1">Active</option>
                                 <option value="0">Inactive</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <div id="edit-additional-fields">
                         </div>
                     </div>
                     <div class="mb-3 mt-3">
