@@ -166,6 +166,8 @@ async function getUserById(id) {
                 var email = response.data.email;
                 var permission = response.data.permission;
                 var is_active = response.data.is_active;
+                // var doctorName = response.data.name;
+                // var doctorId = response.data.doctor_id;
 
                 $('#edit-user-modal #user_id').val(user_id);
                 $('#edit-user-modal #user-name').val(username);
