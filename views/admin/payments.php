@@ -5,73 +5,67 @@ include BASE_PATH . '/models/Treatment.php';
 
 $paymentModel = new Payment();
 $payments = $paymentModel->getAllWithTreatmentAndAppointment();
-
-// $treatmentModel = new Treatment();
-// $treatments = $treatmentModel->getAll();
-
 ?>
-<div class="container">
 
-    <h1 class="mx-3 my-5"> Payments</h1>
-    <section class="content m-3">
-        <div class="container-fluid">
-            <div class="card">
+<div class="container-xxl flex-grow-1 container-p-y">
 
-                <!-- /.card-header -->
-                <div class="card-body p-0 table-responsive">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Dashboard /</span> Payments </h4>
+    <div class="card">
 
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th style="width: 10px">#</th>
-                                <th class="">Appointment ID</th>
-                                <th class="">Treatment</th>
-                                <th class="">Registration Fee</th>
-                                <th class="">Registration Fee Paid</th>
-                                <th class="">Treatment Fee</th>
-                                <th class="">Treatment Fee Paid</th>
-                                <th class="">Quantity</th>
-                                <th class="">Total</th>
-                                <th class="text-center" style="width: 200px">Options</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($payments as $c) {
-                                $total = $c['registration_fee'] + (($c['treatment_fee'] ?? 1) * ($c['quantity'] ?? 1));
-                            ?>
-                                <tr>
-                                    <td> <?= $c['id'] ?? ""; ?> </td>
-                                    <td> <?= '#' . ($c['appointment_id'] ?? "") . '-' . ($c['appointment_no'] ?? "") ?> </td>
-                                    <td> <?= $c['treatment_name'] ?? ""; ?> </td>
-                                    <td> <?= $c['registration_fee'] ?? 0.00; ?> </td>
-                                    <td> <?= $c['registration_fee_paid'] ? '<span class="badge bg-label-success me-1">Paid</span>' : '<span class="badge bg-label-warning me-1">Pending</span>'; ?> </td>
-                                    <td> <?= $c['treatment_fee'] ?? 0.00; ?> </td>
-                                    <td> <?= $c['treatment_fee_paid'] ? '<span class="badge bg-label-success me-1">Paid</span>' : '<span class="badge bg-label-warning me-1">Pending</span>'; ?> </td>
-                                    <td> <?= $c['quantity'] ?? 1; ?> </td>
-                                    <td> <?= $total ?? 0.00; ?> </td>
-                                    <td>
-                                        <div>
-                                            <button type="button" class="btn btn-sm btn-info m-2 active payment-modal" data-treatement-name="<?= $c['treatment_name']; ?>" data-id="<?= $c['id']; ?>" data-treatment-fee-paid="<?= $c['treatment_fee_paid'] == 1 ? 1 : 0; ?>" data-registration-fee-paid="<?= $c['registration_fee_paid'] == 1 ? 1 : 0; ?>" data-treatment-fee="<?= $c['treatment_fee'] ?? 0; ?>" data-registration-fee="<?= $c['registration_fee'] ?? 0; ?>" data-quantity="<?= $c['quantity'] ?? 0; ?>" data-bs-toggle="modal" data-bs-target="#paymentModal">
-                                                Pay
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-primary m-2 active invoice-modal" data-treatement-name="<?= $c['treatment_name']; ?>" data-id="<?= $c['id']; ?>" data-treatment-fee-paid="<?= $c['treatment_fee_paid'] == 1 ? 1 : 0; ?>" data-registration-fee-paid="<?= $c['registration_fee_paid'] == 1 ? 1 : 0; ?>" data-treatment-fee="<?= $c['treatment_fee'] ?? 0; ?>" data-registration-fee="<?= $c['registration_fee'] ?? 0; ?>" data-quantity="<?= $c['quantity'] ?? 0; ?>" data-bs-toggle="modal" data-bs-target="#invoiceModal">
-                                                Invoice
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.card-body -->
-            </div>
+        <!-- /.card-header -->
+        <div class="card-body p-0 table-responsive">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th style="width: 10px">#</th>
+                        <th class="">Appointment ID</th>
+                        <th class="">Treatment</th>
+                        <th class="">Registration Fee</th>
+                        <th class="">Registration Fee Paid</th>
+                        <th class="">Treatment Fee</th>
+                        <th class="">Treatment Fee Paid</th>
+                        <th class="">Quantity</th>
+                        <th class="">Total</th>
+                        <th class="text-center" style="width: 200px">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($payments as $c) {
+                        $total = $c['registration_fee'] + (($c['treatment_fee'] ?? 1) * ($c['quantity'] ?? 1));
+                    ?>
+                        <tr>
+                            <td> <?= $c['id'] ?? ""; ?> </td>
+                            <td> <?= '#' . ($c['appointment_id'] ?? "") . '-' . ($c['appointment_no'] ?? "") ?> </td>
+                            <td> <?= $c['treatment_name'] ?? ""; ?> </td>
+                            <td> <?= $c['registration_fee'] ?? 0.00; ?> </td>
+                            <td> <?= $c['registration_fee_paid'] ? '<span class="badge bg-label-success me-1">Paid</span>' : '<span class="badge bg-label-warning me-1">Pending</span>'; ?> </td>
+                            <td> <?= $c['treatment_fee'] ?? 0.00; ?> </td>
+                            <td> <?= $c['treatment_fee_paid'] ? '<span class="badge bg-label-success me-1">Paid</span>' : '<span class="badge bg-label-warning me-1">Pending</span>'; ?> </td>
+                            <td> <?= $c['quantity'] ?? 1; ?> </td>
+                            <td> <?= $total ?? 0.00; ?> </td>
+                            <td>
+                                <div>
+                                    <button type="button" class="btn btn-sm btn-info m-2 active payment-modal" data-treatement-name="<?= $c['treatment_name']; ?>" data-id="<?= $c['id']; ?>" data-treatment-fee-paid="<?= $c['treatment_fee_paid'] == 1 ? 1 : 0; ?>" data-registration-fee-paid="<?= $c['registration_fee_paid'] == 1 ? 1 : 0; ?>" data-treatment-fee="<?= $c['treatment_fee'] ?? 0; ?>" data-registration-fee="<?= $c['registration_fee'] ?? 0; ?>" data-quantity="<?= $c['quantity'] ?? 0; ?>" data-bs-toggle="modal" data-bs-target="#paymentModal">
+                                        Pay
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-primary m-2 active invoice-modal" data-treatement-name="<?= $c['treatment_name']; ?>" data-id="<?= $c['id']; ?>" data-treatment-fee-paid="<?= $c['treatment_fee_paid'] == 1 ? 1 : 0; ?>" data-registration-fee-paid="<?= $c['registration_fee_paid'] == 1 ? 1 : 0; ?>" data-treatment-fee="<?= $c['treatment_fee'] ?? 0; ?>" data-registration-fee="<?= $c['registration_fee'] ?? 0; ?>" data-quantity="<?= $c['quantity'] ?? 0; ?>" data-bs-toggle="modal" data-bs-target="#invoiceModal">
+                                        Invoice
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
-    </section>
+        <!-- /.card-body -->
+    </div>
 </div>
+
 
 <!-- Payment Modal -->
 <div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
