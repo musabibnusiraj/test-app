@@ -74,7 +74,7 @@ if ($permission == 'operator') {
                                         <!-- <a class="btn btn-sm btn-danger m-2" href="#" onclick="confirmDelete(<?= $c['id']; ?>)"><i class="bx bx-trash"></i></a> -->
                                     </div>
                                 </td>
-                                <td class="text-nowrap" class="appointment_date"><?= $c['appointment_date'] ?? ""; ?></td>
+                                <td class="text-nowrap appointment_date"><?= $c['appointment_date'] ?? ""; ?></td>
                                 <td class="text-nowrap">#<?= $c['id'] ?? ""; ?> - <?= $c['appointment_no'] ?? ""; ?> </td>
                                 <td class="text-nowrap"> <?= $c['treatment_name'] ?? ""; ?> </td>
                                 <?php if ($permission == 'operator') : ?>
@@ -127,10 +127,11 @@ if ($permission == 'operator') {
         // Function to update table rows based on the selected date
         function filterAppointmentsByDate(selectedDate) {
             console.log("selectedDate Date:", selectedDate); // Log each appointment date for debugging
+
+
             // Loop through each row in the table body
             $('tbody tr').each(function() {
                 var appointmentDate = $(this).find('.appointment_date').text().trim();
-                console.log("Appointment Date:", appointmentDate); // Log each appointment date for debugging
                 $(this).toggle(appointmentDate === selectedDate);
             });
         }
