@@ -126,9 +126,11 @@ if ($permission == 'operator') {
 
         // Function to update table rows based on the selected date
         function filterAppointmentsByDate(selectedDate) {
+            console.log("selectedDate Date:", selectedDate); // Log each appointment date for debugging
             // Loop through each row in the table body
             $('tbody tr').each(function() {
-                var appointmentDate = $(this).find('.appointment_date').text(); // Assuming date is in the 12th column
+                var appointmentDate = $(this).find('.appointment_date').text().trim();
+                console.log("Appointment Date:", appointmentDate); // Log each appointment date for debugging
                 $(this).toggle(appointmentDate === selectedDate);
             });
         }
@@ -140,7 +142,9 @@ if ($permission == 'operator') {
 
         // Event handler for date picker change
         $('#datePicker').on('change', function() {
+
             var selectedDate = $(this).val();
+            alert(selectedDate);
             filterAppointmentsByDate(selectedDate);
         });
 
