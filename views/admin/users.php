@@ -19,7 +19,7 @@ if ($permission != 'operator') dd('Access Denied...!');
             type="button"
             class="btn btn-primary float-end"
             data-bs-toggle="modal"
-            data-bs-target="#modalCenter">
+            data-bs-target="#createUser">
             Add New User
         </button>
     </h4>
@@ -89,7 +89,7 @@ if ($permission != 'operator') dd('Access Denied...!');
 <!-- / Content -->
 
 <!-- Modal -->
-<div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="createUser" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <form id="create-form" action="<?= url('services/ajax_functions.php') ?>" enctype="multipart/form-data">

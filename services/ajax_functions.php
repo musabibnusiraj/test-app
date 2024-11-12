@@ -11,6 +11,11 @@ require_once '../models/Treatment.php';
 // Define target directory
 $target_dir = "../assets/uploads/";
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'create_treatment') {
+    echo json_encode(['success' => false, 'message' => "Test"]);
+    exit;
+}
+
 //create user
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'create_user') {
 
