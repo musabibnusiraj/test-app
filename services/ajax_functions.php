@@ -102,15 +102,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['user_id']) && isset($_G
 }
 
 //Delete by user id
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['user_id']) && isset($_GET['action']) &&  $_GET['action'] == 'delete_user') {
-
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['user_id']) && isset($_GET['action']) && $_GET['action'] == 'delete_user') {
     try {
         $user_id = $_GET['user_id'];
-        $userModel = new User();
-        $deleted = $userModel->deleteUser($user_id);
+        $permission = $_GET['permission'];
 
-        if ($deleted) {
-            echo json_encode(['success' => true, 'message' => "User deleted successfully!", 'data' => $deleted]);
+        $userModel = new User();
+        $doctorModel = new Doctor();
+
+        // Check permission and delete doctor if necessary
+        if ($permission == 'doctor') {
+            $doctorDeleted = $doctorModel->deleteDoctorByUserId($user_id);
+            if ($doctorDeleted === false) {
+                echo json_encode(['success' => false, 'message' => 'Doctor has appointments and cannot be deleted.']);
+                exit;
+            }
+        }
+
+        // Proceed to delete the user if doctor deletion was successful or not needed
+        $userDeleted = $userModel->deleteUser($user_id);
+
+        if ($userDeleted) {
+            echo json_encode(['success' => true, 'message' => 'User deleted successfully!']);
         } else {
             echo json_encode(['success' => false, 'message' => 'Failed to delete user.']);
         }

@@ -27,6 +27,9 @@ if ($permission != 'operator') dd('Access Denied...!');
     <!-- Basic Bootstrap Table -->
     <div class="card">
         <h5 class="card-header">Users</h5>
+        <div class="m-4">
+            <div id="delete-alert-container"></div>
+        </div>
         <div class="table-responsive text-nowrap">
             <table class="table">
                 <thead>
@@ -64,7 +67,7 @@ if ($permission != 'operator') dd('Access Denied...!');
                                         <div class="dropdown-menu">
 
                                             <a class="dropdown-item edit-user-btn" data-id="<?= $user['id']; ?>"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                            <a class="dropdown-item delete-user-btn" data-id="<?= $user['id']; ?>"><i class="bx bx-trash me-1"></i> Delete</a>
+                                            <a class="dropdown-item delete-user-btn" data-permission="<?= $user['permission']; ?>" data-id="<?= $user['id']; ?>"><i class="bx bx-trash me-1"></i> Delete</a>
 
                                         </div>
                                     </div>
