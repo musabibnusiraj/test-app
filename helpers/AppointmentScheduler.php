@@ -1,8 +1,8 @@
 <?php
-require_once __DIR__ . './../models/DoctorAvailability.php';
-require_once __DIR__ . './../models/Appointment.php';
-require_once __DIR__ . './../models/Doctor.php';
-require_once __DIR__ . './../models/Treatment.php';
+require_once __DIR__ . '/../models/DoctorAvailability.php';
+require_once __DIR__ . '/../models/Appointment.php';
+require_once __DIR__ . '/../models/Doctor.php';
+require_once __DIR__ . '/../models/Treatment.php';
 
 /**
  * Class AppointmentScheduler
