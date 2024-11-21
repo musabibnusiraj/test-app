@@ -99,6 +99,15 @@ $currentFilename = basename($currentUrl);  // e.g., "dashboard.php"
                     </li>
 
 
+                    <?php if ($permission == 'operator') : ?>
+                        <li class="menu-item <?= $currentFilename === "available_channelings.php" ? 'active' : '' ?>">
+                            <a href="<?= url('views/admin/available_channelings.php') ?>" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-run"></i>
+                                <div data-i18n="Analytics">Appointment Booking</div>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+
                     <li class="menu-item <?= $currentFilename === "appointments.php" ? 'active' : '' ?> ">
                         <a href="<?= url('views/admin/appointments.php') ?>" class="menu-link">
                             <i class="menu-icon tf-icons  bx bx-collection"></i>
