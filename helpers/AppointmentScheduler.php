@@ -75,18 +75,20 @@ class AppointmentScheduler
         echo '<section class="content m-3">';
         echo '<div class="container-fluid">';
 
-        // Loop through each day in the week.
-        foreach ($this->days as $dayCount => $day) {
+        if (!empty($this->availableSlots)) {
+            // Loop through available slots and check if they match the current day.
 
-            // Calculate the current date based on the first day of the week and the day count.
-            $currentDate = clone $this->firstDayOfWeek;
-            $currentDate->modify("+$dayCount days");
+            // Loop through each day in the week.
+            foreach ($this->days as $dayCount => $day) {
 
-            $currentDateFullString = $currentDate->format("l, F j, Y");
-            $currentDateString = $currentDate->format("Y-m-d");
+                // Calculate the current date based on the first day of the week and the day count.
+                $currentDate = clone $this->firstDayOfWeek;
+                $currentDate->modify("+$dayCount days");
 
-            if (!empty($this->availableSlots)) {
-                // Loop through available slots and check if they match the current day.
+                $currentDateFullString = $currentDate->format("l, F j, Y");
+                $currentDateString = $currentDate->format("Y-m-d");
+
+
                 foreach ($this->availableSlots as $slot) {
                     $slotDay = $slot['day'] ?? "";
 
@@ -131,10 +133,8 @@ class AppointmentScheduler
                     }
                 }
             }
-        }
-
-        if (empty($this->availableSlots)) {
-            echo 'No doctor availability.';
+        } else {
+            echo '<h1 class="card p-3 text-danger text-center">No doctor availabilities.</h1>';
         }
 
         // Close the HTML container tags.
