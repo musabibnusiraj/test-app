@@ -69,19 +69,7 @@ class AppointmentScheduler
         $doctorModel = new Doctor();
         $doctor = $doctorModel->getById($this->doctorId);
 
-        // Output the doctor's information and navigation back button.
-        echo '<div class="container">';
-        echo '<div class="row">';
-        echo '<div class="col-8">';
-        echo '<h2 class="mx- mt-5">' . ($doctor['name'] ?? "") . '</h2>';
-        echo '<h5 class="mx- mb-3">' . ($doctor['about'] ?? "") . '</h3>';
-        echo '</div>';
-        echo '<div class="col-4">';
-        echo '<div class="form-group d-flex justify-content-end mx-5 my-5">';
-        echo '<a href="' . url('views/admin/available_channelings.php') . '" class="btn btn-dark active" id="courier_service_modal_btn">Back</a>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
+        echo $this->renderDoctorHeader($doctor);
 
         // Output the appointment schedule section.
         echo '<section class="content m-3">';
@@ -89,6 +77,7 @@ class AppointmentScheduler
 
         // Loop through each day in the week.
         foreach ($this->days as $dayCount => $day) {
+
             // Calculate the current date based on the first day of the week and the day count.
             $currentDate = clone $this->firstDayOfWeek;
             $currentDate->modify("+$dayCount days");
@@ -153,6 +142,31 @@ class AppointmentScheduler
         echo '</section>';
         echo '</div>';
     }
+
+    /**
+     * Renders the doctor header with their details.
+     *
+     * @param array $doctor The doctor details.
+     * 
+     * @return string HTML output for the doctor header.
+     */
+    private function renderDoctorHeader($doctor)
+    {
+        return '<div class="container">
+                    <div class="row">
+                        <div class="col-8">
+                            <h2 class="mx- mt-5">' . ($doctor['name'] ?? "") . '</h2>
+                            <h5 class="mx- mb-3">' . ($doctor['about'] ?? "") . '</h5>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group d-flex justify-content-end mx-5 my-5">
+                                <a href="' . url('views/admin/available_channelings.php') . '" class="btn btn-dark active">Back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+    }
+
 
 
     /**

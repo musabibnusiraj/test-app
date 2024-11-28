@@ -7,7 +7,7 @@ $doctors = $doctorModel->getAllActive();
 
 ?>
 <div class="container">
-    <h1 class="mx-3 my-5">Appointment Booking</h1>
+    <h4 class="fw-bold py-3 my-4"><span class="text-muted fw-light">Dashboard /</span> Appointment Booking </h4>
     <section class="content m-3">
         <div class="container-fluid">
             <div class="row">
