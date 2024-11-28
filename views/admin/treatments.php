@@ -253,7 +253,7 @@ if ($permission != 'operator') dd('Access Denied...!');
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                         Close
                     </button>
-                    <button type="button" class="btn btn-primary" id="update-user">Update</button>
+                    <button type="button" class="btn btn-primary" id="update-treatment">Update</button>
                 </div>
             </form>
         </div>
