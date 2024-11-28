@@ -82,8 +82,6 @@ if ($permission != 'operator') dd('Access Denied...!');
     <!--/ Basic Bootstrap Table -->
 
     <hr class="my-5" />
-
-
 </div>
 
 <!-- / Content -->
