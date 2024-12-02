@@ -25,7 +25,7 @@
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
+	<?php include 'db_connect.php'; ?>
 
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
 		<div class="container">
@@ -53,6 +53,10 @@
 			<div class="row no-gutters slider-text js-fullheight justify-content-center align-items-center">
 				<div class="col-lg-8 col-md-6 ftco-animate d-flex align-items-center">
 					<div class="text text-center">
+						<?php if (!$success): ?>
+							<div class="subheading container" style="color: red; font-weight: bold;"><?= $status ?></div>
+							<br><br>
+						<?php endif; ?>
 						<span class="subheading">Assalamu Alaikum! I am</span>
 						<h1>Musab</h1>
 						<h2>I'm a
@@ -805,7 +809,9 @@
 				<div class="col-md-12 text-center">
 					<p>
 						&copy;
-						<script>document.write(new Date().getFullYear());</script> All rights reserved | Designed &
+						<script>
+							document.write(new Date().getFullYear());
+						</script> All rights reserved | Designed &
 						developed by Musab Ibnu Siraj
 					</p>
 				</div>
