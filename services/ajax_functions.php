@@ -31,6 +31,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id']) && isset($_GET['ac
     exit;
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])  && isset($_POST['action']) && $_POST['action'] === 'update_treatment') {
+
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $description = $_POST['description'];
+    $registration_fee = $_POST['registration_fee'];
+    $treatment_fee = $_POST['treatment_fee'];
+    $is_active = $_POST['is_active'];
+
+    $treatment = new Treatment();
+    $treatment->id = $id;
+    $treatment->name = $name;
+    $treatment->description = $description;
+    $treatment->registration_fee = $registration_fee;
+    $treatment->treatment_fee = $treatment_fee;
+    $treatment->is_active = $is_active;
+    $treatment->save();
+
+    if ($treatment) {
+        echo json_encode(['success' => true, 'message' => 'Treatment create successfully!']);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Failed to create treatment.']);
+    }
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'create_treatment') {
 
 

@@ -177,16 +177,17 @@ if ($permission != 'operator') dd('Access Denied...!');
         <div class="modal-content">
             <form id="update-form" action="<?= url('services/ajax_functions.php') ?>" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalCenterTitle">Update User</h5>
+                    <h5 class="modal-title" id="modalCenterTitle">Update Treatment</h5>
                     <button
                         type="button"
                         class="btn-close"
                         data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                        aria-label="Close">
+                    </button>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="action" value="update_treatment">
-                    <input type="hidden" name="id">
+                    <input type="hidden" name="id" value="" id="id">
                     <div class="row">
                         <div class="col mb-3">
                             <label for="nameWithTitle" class="form-label">Name</label>
